@@ -3,6 +3,7 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const request = require("request")
+const secrets = require("/secrets.js")
 
 const app = express();
 
@@ -37,10 +38,11 @@ app.post("/", function(req, res) {
     const jsonData = JSON.stringify(data)
 
     const url = "https://us4.api.mailchimp.com/3.0/lists/c768948476"
+    const mailchimpKey = secrets.secrets.mailchimpApiKey
 
     const options = {
         method: "POST",
-        auth: "jonne1:2714d9b29e6e3c00648bf26477d18996-us4"
+        auth: "jonne1:" + mailchimpKey
     }
 
     const request = https.request(url, options, function(response) {
